@@ -4,9 +4,11 @@ Simple project that scans a given directory for jpg files and outputs a csv cont
 Writes results to `/output.csv`
 
 # Example Usage
+```
 ruby main.rb extract_dir
 ruby main.rb extract_dir './gps_images/'
 ruby main.rb extract_dir '/Users/josh.peyok/Documents/'
+```
 
 # Future improvements
 1. Adding tests
