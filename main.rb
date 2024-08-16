@@ -21,10 +21,15 @@ class GpsCLI < Thor
 
   desc 'extract_dir DIRECTORY', 'Extracts and prints info about all jpg files in a directory'
   def extract_dir(directory = './**/*.jpg')
-    directory += '*.jpg' if directory[-1] == '/'
+    directory += '**/*.jpg' if directory[-1] == '/'
     d = Dir[directory]
-    puts "Reading #{d.length} files from #{directory}"
 
+    if d.empty?
+      puts "No jpg files found in #{directory}"
+      return
+    end
+
+    puts "Reading #{d.length} files from #{directory} and writing gps data to ./output.csv"
     File.open('output.csv', 'w+') do |f|
       f.puts(csv_headers)
       d.map { |file| f.puts(extract(file)) if File.extname(file) == '.jpg' }
