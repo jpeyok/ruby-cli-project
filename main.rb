@@ -12,10 +12,10 @@ class GpsCLI < Thor
       filename = File.basename(f)
       e = data.exif?
       g = !data.gps.nil?
-      lat = data.gps.latitude if data.exif? && !data.gps.nil?
-      long = data.gps.longitude if data.exif? && !data.gps.nil?
+      lat = data.gps.latitude if e && g
+      long = data.gps.longitude if e && g
       "#{filename},#{e},#{g},#{lat},#{long}"
-    end
+    end 
   end
 
   desc 'extract_dir DIRECTORY', 'Extracts and prints info about all jpg files in a directory'
